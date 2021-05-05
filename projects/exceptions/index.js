@@ -18,7 +18,7 @@
  */
 function isAllTrue(array, fn) {
   if (typeof fn !== 'function') {
-    throw new Error('fn is not a functionnp');
+    throw new Error('fn is not a function');
   }
 
   if (!Array.isArray(array) || !array.length) {
