@@ -11,7 +11,7 @@
    createDivWithText('loftschool') // создаст элемент div, поместит в него 'loftschool' и вернет созданный элемент
  */
 function createDivWithText(text) {
-  const div = document.createElement('div')
+  const div = document.createElement('div');
   div.textContent = text;
   return div;
 }
@@ -25,8 +25,7 @@ function createDivWithText(text) {
    prepend(document.querySelector('#one'), document.querySelector('#two')) // добавит элемент переданный первым аргументом в начало элемента переданного вторым аргументом
  */
 function prepend(what, where) {
-  where.insertBefore(what, where.firstElementChild);
-  // where.prepend(what);
+  where.prepend(what);
 }
 
 /*
@@ -103,7 +102,7 @@ function deleteTextNodes(where) {
   for (let i = 0; i < where.childNodes.length; i++) {
     const el = where.childNodes[i];
 
-    if (el.nodeType ===Element.TEXT_NODE) {
+    if (el.nodeType === Element.TEXT_NODE) {
       where.removeChild(el);
       i--;
     }
@@ -164,19 +163,19 @@ function collectDOMStat(root) {
   function scan(root) {
     for (const child of root.childNodes) {
       if (child.nodeType === Node.TEXT_NODE) {
-        stat.texts ++;
+        stat.texts++;
       } else if (child.nodeType === Node.ELEMENT_NODE) {
         if (child.tagName in stat.tags) {
           stat.tags[child.tag]++;
         } else {
-          stat.tags[child.tagName] ==1;
+          stat.tags[child.tagName] == 1;
         }
 
         for (const className of child.classList) {
           if (className in stat.classes) {
             stat.classes[className]++;
           } else {
-            stat.classes[className] =1;
+            stat.classes[className] = 1;
           }
         }
 
@@ -223,20 +222,20 @@ function collectDOMStat(root) {
    }
  */
 function observeChildNodes(where, fn) {
-  const observer = new MutationObserver(  (mutations ) => {
+  const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       if (mutation.type === 'childList') {
         fn({
           type: mutation.addedNodes.length ? 'insert' : 'remove',
           nodes: [
-              ...(mutation.addedNodes.length ? mutation.addedNodes : mutation.removedNodes),
-            ],
+            ...(mutation.addedNodes.length ? mutation.addedNodes : mutation.removedNodes),
+          ],
         });
       }
     });
   });
 
-observer.observe(where, { childList: true, subtree: true});
+  observer.observe(where, { childList: true, subtree: true });
 }
 
 export {
