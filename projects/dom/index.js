@@ -166,9 +166,9 @@ function collectDOMStat(root) {
         stat.texts++;
       } else if (child.nodeType === Node.ELEMENT_NODE) {
         if (child.tagName in stat.tags) {
-          stat.tags[child.tag]++;
+          stat.tags[child.tagName]++;
         } else {
-          stat.tags[child.tagName] == 1;
+          stat.tags[child.tagName] = 1;
         }
 
         for (const className of child.classList) {
